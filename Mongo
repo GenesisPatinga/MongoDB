@@ -1,0 +1,35 @@
+JavaScript
+// Switch to (or create) the retail database
+use retail_db;
+Step 2: Demonstrating Schema Flexibility Insert two completely different products into the
+same catalog collection without executing a CREATE TABLE command:
+
+JavaScript
+// Insert a laptop (electronics)
+db.catalog.insertOne({
+product_id: 101,
+name: &quot;ThinkPad T14&quot;,
+category: &quot;Electronics&quot;,
+specs: {
+ram: &quot;16GB&quot;,
+cpu: &quot;i7&quot;
+},
+price: 1200.00
+});
+// Insert a coffee mug (home goods) into the EXACT SAME collection
+db.catalog.insertOne({
+product_id: 102,
+name: &quot;Ceramic Travel Mug&quot;,
+category: &quot;Home&quot;,
+volume_oz: 16,
+is_dishwasher_safe: true,
+price: 18.50
+});
+Step 3: Querying the NoSQL Data Use JSON-based query filters instead of standard
+SQL SELECT statements to retrieve your data:
+
+JavaScript
+// Find all electronics
+db.catalog.find({ category: &quot;Electronics&quot; });
+// Find products priced over $50 using the $gt (Greater Than) operator
+db.catalog.find({ price: { $gt: 50 } });
